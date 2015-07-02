@@ -21,7 +21,7 @@ var stackMethods = {
 		return this.length;
 	},
 	push: function(value){
-		this.length++
+		this.length++;
 		this[this.length] = value;
 	},
 	pop: function(){
