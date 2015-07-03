@@ -29,6 +29,9 @@ treeMethods.contains = function(target){
 				searcher(item, target);
 			}
 		});
+		if(result){
+			return result;
+		}
 	};
 	searcher(this, target);
 	return result;
