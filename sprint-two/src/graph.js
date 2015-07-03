@@ -52,7 +52,9 @@ Graph.prototype.removeEdge = function(fromNode, toNode){
 };
 
 Graph.prototype.forEachNode = function(cb){
-	
+	for(var i = 0; i < this.storage.length; i++) {
+		cb(this.storage[i], i, this.storage);
+	}
 };
 
 /*
