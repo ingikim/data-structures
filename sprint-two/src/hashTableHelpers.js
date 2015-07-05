@@ -13,12 +13,21 @@
 
 var LimitedArray = function(limit){
   var storage = [];
-
   var limitedArray = {};
-  limitedArray.get = function(index){
+
+//modified .get method
+  limitedArray.get = function(index, key){
     checkLimit(index);
-    return storage[index];
+    var result;
+
+      _.each(storage[index], function(item){
+        if(item[0] === key){
+          result = item[1];
+        }
+      });
+    return result;
   };
+  //modified .set method
   limitedArray.set = function(index, value){
     checkLimit(index);
     storage[index] = value;
@@ -26,6 +35,29 @@ var LimitedArray = function(limit){
   limitedArray.each = function(callback){
     for(var i = 0; i < storage.length; i++){
       callback(storage[i], i, storage);
+    }
+  };
+  //this is a method that we made
+  limitedArray.setter = function(index, value, key){
+    var contains = false;
+    checkLimit(index);
+    if(storage[index] === undefined){
+      storage[index] = [];
+      storage[index].push([key, value]);
+    }else{
+      //loop through storage[index]
+      _.each(storage[index], function(item){
+        //if any tuple in storage contains the same key
+        if(item[0] === key){
+          //overwirte the value of that tuple
+          item[1] = value;
+          contains = true;
+        }
+      });
+      if(!contains){
+        //else push the new tuple
+        storage[index].push([key, value]);
+      }
     }
   };
 
