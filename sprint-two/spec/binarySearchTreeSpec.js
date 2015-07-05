@@ -24,8 +24,10 @@ describe('binarySearchTree', function() {
     binarySearchTree.insert(2);
     binarySearchTree.insert(3);
     binarySearchTree.insert(7);
+    binarySearchTree.insert(9);
     expect(binarySearchTree.contains(7)).to.equal(true);
     expect(binarySearchTree.contains(8)).to.equal(false);
+    expect(binarySearchTree.contains(9)).to.equal(true);
   });
 
   it('should execute a callback on every value in a tree using "depthFirstLog"', function(){
